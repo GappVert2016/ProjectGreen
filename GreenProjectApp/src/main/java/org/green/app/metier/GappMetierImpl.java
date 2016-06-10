@@ -12,11 +12,13 @@ import org.green.app.entities.Note;
 import org.green.app.entities.Role;
 import org.green.app.entities.SessionApp;
 import org.green.app.entities.Utilisateur;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public class GappMetierImpl implements IRespoAppMetier {
 
+	
 	private IGappDAO dao;
 	
 	public void setDao(IGappDAO dao) {
@@ -39,8 +41,8 @@ public class GappMetierImpl implements IRespoAppMetier {
 	}
 
 	@Override
-	public Long ajouterNote(Note n) {
-		return ajouterNote(n);
+	public Long ajouterNote(Note n, Long idCompetence, Long idEquipe, Long idUtilisateur) {
+		return dao.ajouterNote(n, idCompetence, idEquipe, idUtilisateur);
 	}
 
 	@Override
@@ -146,8 +148,8 @@ public class GappMetierImpl implements IRespoAppMetier {
 	}
 
 	@Override
-	public Long ajouterEquipe(Equipe e) {
-		return dao.ajouterEquipe(e);
+	public Long ajouterEquipe(Equipe e, Long idApp) {
+		return dao.ajouterEquipe(e, idApp);
 	}
 
 	@Override
@@ -173,8 +175,8 @@ public class GappMetierImpl implements IRespoAppMetier {
 	}
 
 	@Override
-	public Long ajouterFamComp(FamilleCompetence fc) {
-		return dao.ajouterFamComp(fc);
+	public Long ajouterFamComp(FamilleCompetence fc, Long idApp) {
+		return dao.ajouterFamComp(fc, idApp);
 	}
 
 	@Override
@@ -190,8 +192,8 @@ public class GappMetierImpl implements IRespoAppMetier {
 	}
 
 	@Override
-	public void ajouterAssignEquipe(AssignationsEquipe ae) {
-		dao.ajouterAssignEquipe(ae);
+	public void ajouterAssignEquipe(AssignationsEquipe ae, Long idEquipe, Long idUtilisateur) {
+		dao.ajouterAssignEquipe(ae, idEquipe, idUtilisateur);
 		
 	}
 
@@ -208,8 +210,8 @@ public class GappMetierImpl implements IRespoAppMetier {
 	}
 
 	@Override
-	public Long ajouterSessionApp(SessionApp sa) {
-		return dao.ajouterSessionApp(sa);
+	public Long ajouterSessionApp(SessionApp sa, Long idUtilisateur) {
+		return dao.ajouterSessionApp(sa, idUtilisateur);
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,12 +18,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class FamilleCompetence implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long idFamille;
+	private Long idFamille;
+	@NotEmpty
 	private String nomFamille;
 	@ManyToOne
 	@JoinColumn(name="idApp")
 	private SessionApp sessionApp;
-	@OneToMany(mappedBy="familleCompetence")
+	@OneToMany(mappedBy="familleCompetence", fetch=FetchType.LAZY)
 	private Collection<Competence> competences;
 	
 	
@@ -35,10 +37,10 @@ public class FamilleCompetence implements Serializable {
 		this.nomFamille = nomFamille;
 		this.sessionApp = sessionApp;
 	}
-	public long getIdFamille() {
+	public Long getIdFamille() {
 		return idFamille;
 	}
-	public void setIdFamille(long idFamille) {
+	public void setIdFamille(Long idFamille) {
 		this.idFamille = idFamille;
 	}
 	public String getNomFamille() {

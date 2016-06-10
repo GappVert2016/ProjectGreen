@@ -41,7 +41,7 @@ public interface IGappDAO {
 	
 	public void attribuerRole(Role r, Long idUtilisateur);
 	
-	public Long ajouterEquipe(Equipe e);
+	public Long ajouterEquipe(Equipe e, Long idApp);
 	public List<Equipe> listEquipe();
 
 /***NOMBRE EQUIPE**/
@@ -53,13 +53,13 @@ public interface IGappDAO {
 	public void supprimerEquipe(Long idEquip);
 	public void modifierEquipe(Equipe e);
 	
-	public Long ajouterFamComp(FamilleCompetence fc);
+	public Long ajouterFamComp(FamilleCompetence fc, Long idApp);
 	public List<FamilleCompetence> listFamComp();
 	public FamilleCompetence getFamComp(Long idFamComp);
 	public void supprimerFamComp(Long idFamC);
 	public void modifierFamComp(FamilleCompetence fc);
 	
-	public Long ajouterNote(Note n);
+	public Long ajouterNote(Note n, Long idCompetence, Long idEquipe, Long idUtilisateur);
 	public List<Note> listNote();
 	
 /*LISTE DES NOTES PAR UTILISATEUR DONT ON CONNAIT L'ID**/	
@@ -69,13 +69,13 @@ public interface IGappDAO {
 	public void supprimerNote(Long idNt);
 	public void modifierNote(Note n);
 	
-	public void ajouterAssignEquipe(AssignationsEquipe ae);
+	public void ajouterAssignEquipe(AssignationsEquipe ae, Long idEquipe, Long idUtilisateur);
 	public List<AssignationsEquipe> listAssignEquipe();
 	public AssignationsEquipe getAssignEquipe(Long idAssignationsEquipe);
 	public void supprimerAssignEquipe(Long idAssignEqu);
 	public void modifierAssignEquipe(AssignationsEquipe ae);
 	
-	public Long ajouterSessionApp(SessionApp sa);
+	public Long ajouterSessionApp(SessionApp sa, Long idUtilisateur);
 	public List<SessionApp> listSassionApp();
 	public SessionApp getSessionApp(Long idApp);
 	public void supprimerSessionApp(Long idSessionA);

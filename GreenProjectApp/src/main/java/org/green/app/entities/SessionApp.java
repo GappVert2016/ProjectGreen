@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,19 +12,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class SessionApp implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long idApp;
+	private Long idApp;
+	@NotEmpty
 	private String nomSessionApp;
 	private String descriptionApp;
 	@ManyToOne
 	@JoinColumn(name="idUtilisateur")
 	private Utilisateur utilisateur;
-	@OneToMany(mappedBy="sessionApp")
+	@OneToMany(mappedBy="sessionApp", fetch=FetchType.LAZY)
 	private Collection<Equipe> equipes;
-	@OneToMany(mappedBy="sessionApp")
+	@OneToMany(mappedBy="sessionApp", fetch=FetchType.LAZY)
 	private Collection<FamilleCompetence> famicomps;
 	
 	
@@ -40,11 +44,11 @@ public class SessionApp implements Serializable {
 		this.utilisateur = utilisateur;
 	}
 
-	public long getIdApp() {
+	public Long getIdApp() {
 		return idApp;
 	}
 
-	public void setIdApp(long idApp) {
+	public void setIdApp(Long idApp) {
 		this.idApp = idApp;
 	}
 

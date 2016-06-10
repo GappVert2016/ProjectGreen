@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 public class AssignationsEquipe implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long idAssignationsEquipe;
+	private Long idAssignationsEquipe;
 	@ManyToOne
 	@JoinColumn(name="idUtilisateur")
 	private Utilisateur utilisateur;
@@ -34,10 +34,10 @@ public class AssignationsEquipe implements Serializable {
 	}
 
 
-	public long getIdAssignationsEquipe() {
+	public Long getIdAssignationsEquipe() {
 		return idAssignationsEquipe;
 	}
-	public void setIdAssignationsEquipe(long idAssignationsEquipe) {
+	public void setIdAssignationsEquipe(Long idAssignationsEquipe) {
 		this.idAssignationsEquipe = idAssignationsEquipe;
 	}
 	public Utilisateur getUtilisateur() {

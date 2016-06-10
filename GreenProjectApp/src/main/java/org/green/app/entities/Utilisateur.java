@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,30 +17,30 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Utilisateur implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long idUtilisateur;
+	private Long idUtilisateur;
 	private String email;
 	@NotEmpty
-	private String nomUtilisateur;	
+	private String nomUtilisateur;
 	private String prenomUtilisateur;
 	private String password;
 	private boolean actived;
-	@OneToMany(mappedBy="utilisateur")
+	@OneToMany(mappedBy="utilisateur", fetch=FetchType.LAZY)
 	private Collection<Role> roles;
-	@OneToMany(mappedBy="utilisateur")
+	@OneToMany(mappedBy="utilisateur", fetch=FetchType.LAZY)
 	private Collection<SessionApp> sessionApps;
-	@OneToMany(mappedBy="utilisateur")
+	@OneToMany(mappedBy="utilisateur", fetch=FetchType.LAZY)
 	private Collection<AssignationsEquipe> assignEquipes;
-	@OneToMany(mappedBy="utilisateur")
+	@OneToMany(mappedBy="utilisateur", fetch=FetchType.LAZY)
 	private Collection<Note> notes;
 
 	
 	public Utilisateur() {
-		super();
+		
 		// TODO Auto-generated constructor stub
 	}
 
 	public Utilisateur(String email, String nomUtilisateur,String prenomUtilisateur, String password, boolean actived) {
-		super();
+
 		this.email = email;
 		this.nomUtilisateur = nomUtilisateur;
 		this.prenomUtilisateur = prenomUtilisateur;
@@ -48,12 +49,25 @@ public class Utilisateur implements Serializable{
 		this.actived = actived;
 		
 	}
+	public Utilisateur(String email, String nomUtilisateur,String prenomUtilisateur, String password) {
 
-	public long getIdUtilisateur() {
+		this.email = email;
+		this.nomUtilisateur = nomUtilisateur;
+		this.prenomUtilisateur = prenomUtilisateur;
+		
+		this.password = password;
+		
+	}
+	public Utilisateur(String nomUtilisateur) {
+		this.nomUtilisateur = nomUtilisateur;
+		
+	}
+
+	public Long getIdUtilisateur() {
 		return idUtilisateur;
 	}
 
-	public void setIdUtilisateur(long idUtilisateur) {
+	public void setIdUtilisateur(Long idUtilisateur) {
 		this.idUtilisateur = idUtilisateur;
 	}
 

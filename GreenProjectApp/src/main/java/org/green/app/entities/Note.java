@@ -29,7 +29,7 @@ public class Note implements Serializable {
 	@JoinColumn(name="idEquipe")
 	private Equipe equipe;
 	@ManyToOne
-	@JoinColumn(name="id_utiisateur")
+	@JoinColumn(name="idUtilisateur")
 	private Utilisateur utilisateur;
 	
 	public Note() {

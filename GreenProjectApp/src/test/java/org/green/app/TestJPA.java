@@ -77,10 +77,10 @@ public class TestJPA {
 			for(int i=1;i< 29;i++){
 				u[i] = metier.getUtilisateur((long) i);
 				if(i%2==0){
-					metier.ajouterSessionApp(new SessionApp("APPInfosemestre1", "Description app info 2016", u[i]));
+					metier.ajouterSessionApp(new SessionApp("APPInfosemestre1", "Description app info 2016", u[i]), (long)i);
 				}
 				else{
-					metier.ajouterSessionApp(new SessionApp("APPElectronique1", "Description app info 2016", u[i]));
+					metier.ajouterSessionApp(new SessionApp("APPElectronique1", "Description app info 2016", u[i]), (long)i);
 				}
 			}
 			
@@ -105,25 +105,25 @@ public class TestJPA {
 			for(int i=1;i< 29;i++){
 				v[i] = metier.getSessionApp((long) i);
 				if(i%7==6){
-					metier.ajouterEquipe(new Equipe("GoupeA1", v[i]));
+					metier.ajouterEquipe(new Equipe("GoupeA1", v[i]), (long)i);
 				}
 				else if(i%7==5){
-					metier.ajouterEquipe(new Equipe("GoupeA2", v[i]));
+					metier.ajouterEquipe(new Equipe("GoupeA2", v[i]), (long)i);
 				}
 				else if(i%7==4){
-					metier.ajouterEquipe(new Equipe("GoupeA3", v[i]));
+					metier.ajouterEquipe(new Equipe("GoupeA3", v[i]), (long)i);
 				}
 				else if(i%7==3){
-					metier.ajouterEquipe(new Equipe("GoupeA4", v[i]));
+					metier.ajouterEquipe(new Equipe("GoupeA4", v[i]), (long)i);
 				}
 				else if(i%7==2){
-					metier.ajouterEquipe(new Equipe("GoupeA5", v[i]));
+					metier.ajouterEquipe(new Equipe("GoupeA5", v[i]), (long)i);
 				}
 				else if(i%7==1){
-					metier.ajouterEquipe(new Equipe("GoupeA6", v[i]));
+					metier.ajouterEquipe(new Equipe("GoupeA6", v[i]), (long)i);
 				}
 				else if(i%7==0){
-					metier.ajouterEquipe(new Equipe("GoupeA7", v[i]));
+					metier.ajouterEquipe(new Equipe("GoupeA7", v[i]), (long)i);
 				}	
 			}
 			
@@ -153,37 +153,37 @@ public class TestJPA {
 			for(int i=1;i< 5;i++){
 				u[i] = metier.getUtilisateur((long) i);
 				e[1] = metier.getEquipe((long) 1);
-				metier.ajouterAssignEquipe(new AssignationsEquipe(u[i],e[1]));	
+				metier.ajouterAssignEquipe(new AssignationsEquipe(u[i],e[1]), (long)i, 1L);	
 			}
 			for(int i=5;i< 9;i++){
 				u[i] = metier.getUtilisateur((long) i);
 				e[2] = metier.getEquipe((long) 2);
-				metier.ajouterAssignEquipe(new AssignationsEquipe(u[i],e[2]));
+				metier.ajouterAssignEquipe(new AssignationsEquipe(u[i],e[2]), (long)i, 2L);
 			}
 			for(int i=9;i< 13;i++){
 				u[i] = metier.getUtilisateur((long) i);
 				e[3] = metier.getEquipe((long) 3);
-				metier.ajouterAssignEquipe(new AssignationsEquipe(u[i],e[3]));
+				metier.ajouterAssignEquipe(new AssignationsEquipe(u[i],e[3]), (long)i, 3L);
 			}
 			for(int i=13;i< 17;i++){
 				u[i] = metier.getUtilisateur((long) i);
 				e[4] = metier.getEquipe((long) 4);
-				metier.ajouterAssignEquipe(new AssignationsEquipe(u[i],e[4]));
+				metier.ajouterAssignEquipe(new AssignationsEquipe(u[i],e[4]), (long)i, 4L);
 			}
 			for(int i=17;i< 21;i++){
 				u[i] = metier.getUtilisateur((long) i);
 				e[5] = metier.getEquipe((long) 5);
-				metier.ajouterAssignEquipe(new AssignationsEquipe(u[i],e[5]));	
+				metier.ajouterAssignEquipe(new AssignationsEquipe(u[i],e[5]) , (long)i, 5L);	
 			}
 			for(int i=21;i< 25;i++){
 				u[i] = metier.getUtilisateur((long) i);
 				e[6] = metier.getEquipe((long) 6);
-				metier.ajouterAssignEquipe(new AssignationsEquipe(u[i],e[6]));
+				metier.ajouterAssignEquipe(new AssignationsEquipe(u[i],e[6]), (long)i, 6L);
 			}
 			for(int i=25;i< 29;i++){
 				u[i] = metier.getUtilisateur((long) i);
 				e[7] = metier.getEquipe((long) 7);
-				metier.ajouterAssignEquipe(new AssignationsEquipe(u[i],e[7]));
+				metier.ajouterAssignEquipe(new AssignationsEquipe(u[i],e[7]), (long)i, 7L);
 			}
 			List<AssignationsEquipe> ae2=metier.listAssignEquipe();
 			assertTrue(ae1.size()+28==ae2.size());

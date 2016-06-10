@@ -24,21 +24,23 @@ public interface IRespoAppMetier extends ITuteurMetier {
 	
 	public void attribuerRole(Role r, Long idUtilisateur);
 	
-	public Long ajouterEquipe(Equipe e);
-	//public List<Equipe> listEquipe();
+
+	public Long ajouterEquipe(Equipe e, Long idApp);
+//	public List<Equipe> listEquipe();
 	//public Equipe getEquipe(Long idEquipe);
+
 	public void supprimerEquipe(Long idEquip);
 	public void modifierEquipe(Equipe e);
 	
-	public Long ajouterFamComp(FamilleCompetence fc);
+	public Long ajouterFamComp(FamilleCompetence fc, Long idApp);
 	public void supprimerFamComp(Long idFamC);
 	public void modifierFamComp(FamilleCompetence fc);
 	
-	public void ajouterAssignEquipe(AssignationsEquipe ae);
+	public void ajouterAssignEquipe(AssignationsEquipe ae, Long idEquipe, Long idUtilisateur);
 	public void supprimerAssignEquipe(Long idAssignEqu);
 	public void modifierAssignEquipe(AssignationsEquipe ae);
 	
-	public Long ajouterSessionApp(SessionApp sa);
+	public Long ajouterSessionApp(SessionApp sa, Long idUtilisateur);
 	public List<SessionApp> listSassionApp();
 	public SessionApp getSessionApp(Long idApp);
 	public void supprimerSessionApp(Long idSessionA);

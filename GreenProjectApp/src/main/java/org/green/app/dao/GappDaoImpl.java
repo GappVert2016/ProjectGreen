@@ -122,7 +122,9 @@ public class GappDaoImpl implements IGappDAO {
 	}
 
 	@Override
-	public Long ajouterEquipe(Equipe e) {
+	public Long ajouterEquipe(Equipe e, Long idApp) {
+		SessionApp sa = getSessionApp(idApp);
+		e.setSessionApp(sa);
 		em.persist(e);
 		return e.getIdEquipe();
 	}
@@ -165,7 +167,9 @@ public class GappDaoImpl implements IGappDAO {
 	}
 
 	@Override
-	public Long ajouterFamComp(FamilleCompetence fc) {
+	public Long ajouterFamComp(FamilleCompetence fc, Long idApp) {
+		SessionApp sa = getSessionApp(idApp);
+		fc.setSessionApp(sa);
 		em.persist(fc);
 		return fc.getIdFamille();
 	}
@@ -195,7 +199,13 @@ public class GappDaoImpl implements IGappDAO {
 	}
 
 	@Override
-	public Long ajouterNote(Note n) {
+	public Long ajouterNote(Note n, Long idCompetence, Long idEquipe, Long idUtilisateur) {
+		Competence c = getCompetence(idCompetence);
+		n.setComptence(c);
+		Equipe e = getEquipe(idEquipe);
+		n.setEquipe(e);
+		Utilisateur u = getUtilisateur(idUtilisateur);
+		n.setUtilisateur(u);
 		em.persist(n);
 		return n.getIdNote();
 	}
@@ -225,7 +235,11 @@ public class GappDaoImpl implements IGappDAO {
 	}
 
 	@Override
-	public void ajouterAssignEquipe(AssignationsEquipe ae) {
+	public void ajouterAssignEquipe(AssignationsEquipe ae, Long idEquipe, Long idUtilisateur) {
+		Equipe e = getEquipe(idEquipe);
+		ae.setEquipe(e);
+		Utilisateur u = getUtilisateur(idUtilisateur);
+		ae.setUtilisateur(u);		
 		em.persist(ae);
 		
 	}
@@ -255,7 +269,9 @@ public class GappDaoImpl implements IGappDAO {
 	}
 
 	@Override
-	public Long ajouterSessionApp(SessionApp sa) {
+	public Long ajouterSessionApp(SessionApp sa, Long idUtilisateur) {
+		Utilisateur u = getUtilisateur(idUtilisateur);
+		sa.setUtilisateur(u);
 		em.persist(sa);
 		return sa.getIdApp();
 	}

@@ -9,5 +9,10 @@ public class loginController {
 	public String login(){
 		return "login";
 	}
+	
+	@RequestMapping(value="/logout")
+	public String logout(){
+		return "login";
+	}
 
 }
