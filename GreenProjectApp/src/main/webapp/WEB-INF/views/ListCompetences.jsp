@@ -10,7 +10,7 @@
 	
 	<body>
 	
-	<table>
+<!-- 	<table>
 		<tr>
 			<th>ID</th><th>NOM SESSIONAPP</th><th>DESCRIPTION</th>
 		</tr>
@@ -69,6 +69,6 @@
 			</tr>
 		
 		</c:forEach>
-</table>
+</table>  -->
 	</body>
 </html>

@@ -53,13 +53,20 @@
 		
 </table>
 
-<!--    		<p>${groupe.nomEquipe }</p>  -->	
+<!--    		<p>${groupe.nomEquipe }</p> 
+<c:forEach var="i" begin="1" end="5">
+   Item <c:out value="${i}"/><p>
+</c:forEach>
+ -->	
+
+<c:forEach var="i" begin="1" end="5">
+   Item <p>
 	
 	<table>
 		<tr>
 			<th>idEquipe</th><th>nomEquipe</th><th>nomSessionApp</th>
 		</tr>
-		<c:forEach items="${utilisateurGroupe1}" var="utilisateurGroupe">
+		<c:forEach items="${utilisateurGroupe<c:out value=${i}/>}" var="utilisateurGroupe">
 			<tr>
 				<td>${utilisateurGroupe.equipe.idEquipe }</td>
 				<td>${utilisateurGroupe.equipe.nomEquipe }</td>
@@ -71,9 +78,11 @@
 		
 		</c:forEach>
 		
-</table>
+		
+		
+	</table>
 
-
+</c:forEach>
 
 		 
 

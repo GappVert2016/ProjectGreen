@@ -4,16 +4,15 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:s="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
 
 		<bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/db_gapp"></property>
+		<property name="url" value="jdbc:mysql://localhost:8889/db_gapp"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value=""></property>
+		<property name="password" value="root"></property>
 		
 	</bean>	
 	
@@ -43,7 +42,7 @@
 		<property name="dao" ref="dao"></property>
 	
 	</bean>
-	<s:http>
+<!-- 	<s:http>
 		<s:intercept-url pattern="/respoApp/**" access="ROLE_ADMIN_RESPO" ></s:intercept-url>
 		<s:intercept-url pattern="/tutorApp/**" access="ROLE_ADMIN_TUTOR" ></s:intercept-url>
 		<s:intercept-url pattern="/studentApp/**" access="ROLE_ADMIN_STUDENT" ></s:intercept-url>
@@ -64,5 +63,5 @@
 			users-by-username-query="select  nomUtilisateur, password, actived from utilisateur where nomUtilisateur=?"
 			authorities-by-username-query="select u.nomUtilisateur, r.rolename from utilisateur u, role r where u.idUtilisateur = r.idUtilisateur and u.nomUtilisateur=? " ></s:jdbc-user-service>
 		</s:authentication-provider>
-	</s:authentication-manager>
+	</s:authentication-manager>   -->
 </beans>

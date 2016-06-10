@@ -9,8 +9,6 @@
 		</tr>
 		<c:forEach items="${listEquipes}" var="equipe">
 			<tr>
-				<td>${equipe.sessionApp.idApp }</td>
-				<td>${equipe.idEquipe }</td>
 				<td>${equipe.nomEquipe }</td>
 				
 			</tr>

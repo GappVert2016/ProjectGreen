@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.green.app.entities.AssignationsEquipe;
 import org.green.app.entities.Equipe;
+import org.green.app.entities.FamilleCompetence;
 import org.green.app.entities.SessionApp;
 import org.green.app.entities.Utilisateur;
 import org.green.app.metier.IRespoAppMetier;
@@ -21,6 +22,7 @@ public class TestJPA {
 		
 	}
 
+/*
 	@Test
 	public void testUtilisateur() {
 		try {
@@ -190,5 +192,7 @@ public class TestJPA {
 			assertTrue(e.getMessage(),false);
 		}
 	}
-
+*/
+	
+	
 }
