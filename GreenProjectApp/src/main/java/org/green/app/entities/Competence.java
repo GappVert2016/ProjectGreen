@@ -3,7 +3,9 @@ package org.green.app.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,7 +28,8 @@ public class Competence implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="idFamille")
 	private FamilleCompetence familleCompetence;
-	@OneToMany(mappedBy="comptence")
+	@OneToMany(mappedBy="comptence", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	//, fetch = FetchType.EAGER, cascade = CascadeType.ALL
 	private Collection<Note> notes;
 	
 	public Competence() {

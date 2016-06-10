@@ -1,5 +1,6 @@
 package org.green.app.metier;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.green.app.dao.IGappDAO;
@@ -234,7 +235,37 @@ public class GappMetierImpl implements IRespoAppMetier {
 	}
     @Override
 	public List<Utilisateur> listUtilisateurParGroupe(Long id) {
-	return dao.listUtilisateurParGroupe(id);
+    	return dao.listUtilisateurParGroupe(id);
 	}
+
+/****LISTE DES NOTES PAR UTILISATEUR DONT ON CONNAIT L'ID**/	
+	@Override
+	public List<Note> listNotesParUtilisateur(Long id) {
+		return dao.listNotesParUtilisateur(id);
+	}
+/***NOMBRE D'EQUIPE****/
+	@Override
+	public int nombreEquipe() {
+		return dao.nombreEquipe();	
+	}
+/***LISTER LES COMPETENCES PAR FAMILLE COMPETENCE ET PAR ETUDIANT****/
+	@Override
+	public List<Competence> listCompetenceParFamCompParEtudiant(Long idFamComp, Long id){
+		return dao.listCompetenceParFamCompParEtudiant(idFamComp,id);
+	}
+
+
+/**LISTE DES NOTES PAR UTILISATEUR DONT ON CONNAIT L'IDENTIFIANT ET PAR FAMILLE COMPETENCE**/
+	@Override
+	public List<Note> listNotesParUtilisateurParFamComp(Long id,Long idFam){
+		return dao.listNotesParUtilisateurParFamComp(id, idFam);
+	}
+/***NOMBRE FAMILLE COMPETENCE**/
+	public int nombreFamilleComp(){
+		return dao.nombreFamilleComp();	
+	}
+
+	
+
 
 }

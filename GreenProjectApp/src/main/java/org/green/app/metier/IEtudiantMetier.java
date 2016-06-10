@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.green.app.entities.AssignationsEquipe;
 import org.green.app.entities.Competence;
+import org.green.app.entities.Equipe;
 import org.green.app.entities.FamilleCompetence;
 import org.green.app.entities.Note;
 import org.green.app.entities.Utilisateur;
@@ -22,9 +23,15 @@ public interface IEtudiantMetier {
 	public FamilleCompetence getFamComp(Long idFamComp);
 	
 	public List<Note> listNote();
+	
+	/*LISTE DES NOTES PAR UTILISATEUR DONT ON CONNAIT L'ID**/	
+	public List<Note> listNotesParUtilisateur(Long id);
+	
 	public Note getNote(Long idNote);
 	
 	public List<AssignationsEquipe> listAssignEquipe();
 	public AssignationsEquipe getAssignEquipe(Long idAssignationsEquipe);
+	
+	
 
 }

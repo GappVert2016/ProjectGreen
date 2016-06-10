@@ -57,7 +57,7 @@ public class Utilisateur implements Serializable{
 		this.idUtilisateur = idUtilisateur;
 	}
 
-	public String getNomUtilisateur() {
+	public  String getNomUtilisateur() {
 		return nomUtilisateur;
 	}
 

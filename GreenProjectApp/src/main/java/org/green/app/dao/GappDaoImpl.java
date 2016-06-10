@@ -1,5 +1,6 @@
 package org.green.app.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -39,11 +40,20 @@ public class GappDaoImpl implements IGappDAO {
 		req.setParameter("x", "%"+mc+"%");
 		return req.getResultList();
 	}
-
+/***LISTE DDES NOTES PAR FAMMILLE DE COMPETENCE***/
 	@Override
 	public List<Competence> listCompetenceParFamComp(Long idFamComp) {
 		Query req = em.createQuery("select c from Competence c where c.fammilleCompetence.idFamille=:x");
 		req.setParameter("x", idFamComp);
+		return req.getResultList();
+	}
+/***LISTE DDES NOTES PAR FAMMILLE DE COMPETENCE PAR ETUDIANT***/
+	@Override
+	public List<Competence> listCompetenceParFamCompParEtudiant(Long idFamComp, Long idUtilisateur) {
+		Query req = em.createQuery("select c from Competence c where c.familleCompetence.idFamille=:x "
+				+ "AND c.familleCompetence.sessionApp.utilisateur.idUtilisateur=:y");
+		req.setParameter("x", idFamComp);
+		req.setParameter("y", idUtilisateur);
 		return req.getResultList();
 	}
 
@@ -116,12 +126,25 @@ public class GappDaoImpl implements IGappDAO {
 		em.persist(e);
 		return e.getIdEquipe();
 	}
-
+	
+/** 
+ * Modification de la requete pour la liste des equipes, Fonction ajouté dans ItutorMetier
+ * **/
+	
 	@Override
 	public List<Equipe> listEquipe() {
-		Query req = em.createQuery("select e from Equipe e");
+		Query req = em.createQuery("select distinct e.nomEquipe from Equipe e ");
 		return req.getResultList();
 	}
+	
+/****
+ *  Fonction pour avoir le nombre d'Equipe 
+ *  ***/	
+	
+/*	public List<Equipe> nombreEquipe() {
+		Query req = em.createQuery("select count(distinct e.nomEquipe) from Equipe e ");
+		return req.getResultList();
+	}*/
 
 	@Override
 	public Equipe getEquipe(Long idEquipe) {
@@ -129,8 +152,8 @@ public class GappDaoImpl implements IGappDAO {
 	}
 
 	@Override
-	public void supprimerEquipe(Long idEquip) {
-		Equipe e=getEquipe(idEquip);
+	public void supprimerEquipe(Long idEquipe) {
+		Equipe e=getEquipe(idEquipe);
 		em.remove(e);
 		
 	}
@@ -260,11 +283,44 @@ public class GappDaoImpl implements IGappDAO {
 		em.merge(sa);
 		
 	}
-	
+/**LISTE DES UTILISATEUR PAR GROUPE A PARTIR DE L'ID DU GROUPE**/	
 	@Override
 	public List<Utilisateur> listUtilisateurParGroupe(Long identifiant) {
 	Query req = em.createQuery("select ae from AssignationsEquipe ae where ae.equipe.idEquipe=:x");
 	req.setParameter("x", identifiant);
 	return req.getResultList();
 	}
+/***COMPTER LE NOMBRE D'EQUIPE**/
+	@Override
+	public int  nombreEquipe() {
+		Query req = em.createQuery("select count(distinct e.nomEquipe) from Equipe e ");
+		String nb=req.getSingleResult().toString();
+		return Integer.parseInt(nb);
+	}
+/***COMPTER LE NOMBRE DE FAMILLE DE COMPETENCE**/
+	@Override
+	public int  nombreFamilleComp() {
+		Query req = em.createQuery("select count(distinct f.nomFamille) from FamilleCompetence f ");
+		String nb=req.getSingleResult().toString();
+		return Integer.parseInt(nb);
+	}
+
+	
+/**LISTE DES NOTES PAR UTILISATEUR DONT ON CONNAIT L'IDENTIFIANT**/
+	@Override
+	public List<Note> listNotesParUtilisateur(Long id) {
+		Query req = em.createQuery("select n from Note n where n.utilisateur.idUtilisateur=:x");
+		req.setParameter("x", id);
+		return req.getResultList();
+	}
+/**LISTE DES NOTES PAR UTILISATEUR DONT ON CONNAIT L'IDENTIFIANT ET PAR FAMILLE COMPETENCE**/
+	public List<Note> listNotesParUtilisateurParFamComp(Long id,Long idFam) {
+		Query req = em.createQuery("select n from Note n  "
+				+ " where n.utilisateur.idUtilisateur=:x AND n.comptence.familleCompetence.idFamille=:y");
+		req.setParameter("x", id);
+		req.setParameter("y", idFam);
+		return req.getResultList();
+	}
+	
+
 }
