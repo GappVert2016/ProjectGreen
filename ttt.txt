@@ -1,0 +1,76 @@
+
+String metaData =  ((String)globalMap.get("tTikaExtractor_2_METADATA"));
+
+ArrayList<String> FieldNamesValues = new ArrayList<>();
+String[] metaDatas = metaData.split("=");
+
+
+String FirstVal = metaDatas[0] + "=";
+
+for(int i = 1; i< metaDatas.length;i++){
+
+	String Data = metaDatas[i];
+	String[] Datas = Data.split(" ");
+	
+	for(int k = 0; k< Datas.length - 1; k++){
+	
+		FirstVal+=" "+Datas[k];
+	}
+	if(i==metaDatas.length-1)
+		FirstVal += Datas[Datas.length-1];
+	FieldNamesValues.add(FirstVal);
+	
+	FirstVal = Datas[Datas.length -1] + "=";
+	
+}
+System.out.print(FieldNamesValues);
+
+System.out.println(" ");
+System.out.println(" ");
+
+
+ArrayList<String> FieldNames = new ArrayList<>();
+ArrayList<String> FieldValues = new ArrayList<>();
+
+for(int i = 0; i < FieldNamesValues.size() - 1;i++){
+
+	String Data = FieldNamesValues.get(i);
+	String[] Datas = Data.split("=");
+	
+	FieldNames.add(Datas[0]);
+	FieldValues.add(Datas[1]);
+	
+	
+}
+System.out.print(FieldNames);
+System.out.println(FieldNames.size());
+System.out.println(" ");
+System.out.println(" ");
+System.out.print(FieldValues);
+System.out.println(" ");
+System.out.println(" ");
+System.out.println(FieldValues.size());
+
+System.out.println(" ");
+System.out.println(" ");
+
+
+String values = "";
+String names = "";
+for(int i = 0, i<FieldNames.size() - 1; i++){
+	names += FieldNames.get(i)+";";	
+} names += FieldNames[FieldNames.size() - 1];
+for(int i = 0, i<FieldValues - 1; i++){
+	values += FieldValues.get(i);
+} values += FieldNames[FieldNames.size() - 1];
+
+System.out.print(values);
+System.out.print(names);
+
+
+FileWriter fileWriter = new FileWriter("P:/tmp/Test/MonFichier.csv");
+fileWriter.append("blabla");
+fileWriter.close(); 
+ 
+ 
+ 
